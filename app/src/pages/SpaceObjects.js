@@ -96,7 +96,7 @@ export default class SpaceObjects extends React.Component {
           <Row className="justify-content-center">
             <Col md="auto">
               <h1 className="brand" style={{ fontSize: "8rem" }}>
-                SKYBOX
+                SPACE OBJECTS
               </h1>
             </Col>
           </Row>
