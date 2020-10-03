@@ -9,7 +9,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import countries from "../data/countries.json";
 import scores from "../data/scores.json";
 
-const MODES = [
+const CATEGORIES = [
   "ORBITAL_PAYLOAD_COUNT",
   "ORBITAL_ROCKET_BODY_COUNT",
   "ORBITAL_DEBRIS_COUNT",
@@ -29,7 +29,7 @@ export default class SpaceObjects extends React.Component {
       scores: [],
       gLabels: [],
       gData: [],
-      mode: "COUNTRY_TOTAL",
+      category: "COUNTRY_TOTAL",
     };
     this.globeEl = React.createRef();
   }
@@ -39,7 +39,7 @@ export default class SpaceObjects extends React.Component {
       globe.current.controls().autoRotate = true;
       globe.current.controls().autoRotateSpeed = 1;
     }
-    this.processData(this.state.mode);
+    this.processData(this.state.category);
   }
 
   convertArrayToObject = (array) => {
@@ -65,28 +65,28 @@ export default class SpaceObjects extends React.Component {
     }, obj);
   };
 
-  processData = (mode) => {
+  processData = (category) => {
     const obj = this.convertArrayToObject(scores);
     const data = countries.map((item) => ({
       lat: item.latlng[0],
       lng: item.latlng[1],
       count: obj[item.name.toUpperCase()]
-        ? obj[item.name.toUpperCase()][mode] / 100
+        ? obj[item.name.toUpperCase()][category] / 100
         : 0,
     }));
     const labels = countries.map((item) => ({
       lat: item.latlng[0],
       lng: item.latlng[1],
       text: obj[item.name.toUpperCase()]
-        ? `${item.name} - ${obj[item.name.toUpperCase()][mode]}`
+        ? `${item.name} - ${obj[item.name.toUpperCase()][category]}`
         : `${item.name} - 0`,
     }));
     this.setState({ gData: data, gLabels: labels });
   };
 
-  handleClick = (mode) => {
-    this.setState({ mode: mode });
-    this.processData(mode);
+  handleClick = (category) => {
+    this.setState({ category: category });
+    this.processData(category);
   };
 
   render() {
@@ -96,34 +96,34 @@ export default class SpaceObjects extends React.Component {
           <Row className="justify-content-center">
             <Col md="auto">
               <h1 className="brand" style={{ fontSize: "8rem" }}>
-                SKYBOX
+                SPACE OBJECTS
               </h1>
             </Col>
           </Row>
           <Row className="justify-content-center">
             <Col md={12}>
-              <h5 className="mono">
-                The Eternal Space Race. Compare you country's space exploits
+              <h3 className="thin">
+                The Eternal Space Race. Compare your country's orbital exploits
                 against the World.
-              </h5>
+              </h3>
             </Col>
           </Row>
           <Row className="justify-content-center" style={{ marginTop: "1rem" }}>
             <Col md={3}>
               <h6 className="mono">
-                Score<br />
-                {this.state.mode}
+                Category<br />
+                {this.state.category}
               </h6>
             </Col>
             <Col md={3}>
               <DropdownButton variant="secondary" title="Space Object Scores">
-                {MODES.map((mode, index) => {
+                {CATEGORIES.map((category, index) => {
                   return (
                     <Dropdown.Item
                       key={index}
-                      onClick={() => this.handleClick(mode)}
+                      onClick={() => this.handleClick(category)}
                     >
-                      {mode}
+                      {category}
                     </Dropdown.Item>
                   );
                 })}
