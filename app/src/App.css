@@ -9,8 +9,14 @@ html {
   color: white;
   background-color: #000011;
   min-height: 100vh;
+  font-weight: 300;
 }
 
 .brand {
   font-family: "Lato", sans-serif;
+}
+
+.mono {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
