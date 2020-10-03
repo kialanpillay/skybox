@@ -11,6 +11,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import Navigation from "./components/Navigation";
 import SpaceObjects from "./pages/SpaceObjects";
 
 export default class App extends React.Component {
@@ -173,6 +174,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <Navigation />
         <Router>
           <Switch>
             <Route exact path="/">
@@ -188,8 +190,9 @@ export default class App extends React.Component {
                   <Col md="auto">
                     {this.state.satellites ? (
                       <h5 className="mono">
-                        NASA SSC tracks {this.state.observatories.length} satellites
-                        historically or currently orbiting Planet Earth.
+                        NASA SSC tracks {this.state.observatories.length}{" "}
+                        satellites historically or currently orbiting Planet
+                        Earth.
                       </h5>
                     ) : (
                       <Spinner animation="border" role="status"></Spinner>
@@ -301,7 +304,7 @@ export default class App extends React.Component {
                       ref={this.globeEl}
                       globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
                       width={800}
-                      height={400}
+                      height={360}
                       pointsData={this.state.gData}
                       pointAltitude="altitude"
                       labelsData={this.state.gLabels}
@@ -309,17 +312,9 @@ export default class App extends React.Component {
                     />
                   </Col>
                 </Row>
-                <Row className="justify-content-center">
-                  <Col md="auto">
-                    <p>
-                      &copy; Kialan Pillay, Tshiamo Phaahla and Johns Paul c/o
-                      Team Alpha Q
-                    </p>
-                  </Col>
-                </Row>
               </Container>
             </Route>
-            <Route exact path="/world">
+            <Route exact path="/objects">
               <SpaceObjects />
             </Route>
           </Switch>
