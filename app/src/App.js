@@ -1,5 +1,4 @@
 import React from "react";
-import WorldwindGlobe from "worldwind-react-globe";
 import Globe from "react-globe.gl";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Container from "react-bootstrap/Container";
@@ -114,14 +113,6 @@ export default class App extends React.Component {
               </Container>
             </Route>
             <Route exact path="/globe"></Route>
-            <Route exact path="/worldwind">
-              <WorldwindGlobe
-                layers={layers}
-                latitude={34.2}
-                longitude={-119.2}
-                altitude={10e6}
-              />
-            </Route>
           </Switch>
         </Router>
       </div>
