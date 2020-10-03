@@ -51,9 +51,9 @@ export default class App extends React.Component {
                 </Row>
                 <Row className="justify-content-center">
                   <Col md="auto">
-                    <h5 className="mono">
+                    <h3 className="thin">
                       Orbital Exploration At Your Fingertips
-                    </h5>
+                    </h3>
                   </Col>
                 </Row>
                 <Row

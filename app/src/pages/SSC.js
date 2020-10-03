@@ -181,7 +181,7 @@ export default class SSC extends React.Component {
           <Row className="justify-content-center">
             <Col md="auto">
               {this.state.satellites ? (
-                <h5 className="mono">
+                <h3 className="thin">
                   NASA{" "}
                   <a
                     href="https://sscweb.gsfc.nasa.gov/about.html"
@@ -191,7 +191,7 @@ export default class SSC extends React.Component {
                   </a>{" "}
                   tracks {this.state.observatories.length} satellites
                   historically or currently orbiting Planet Earth.
-                </h5>
+                </h3>
               ) : (
                 <Spinner animation="border" role="status"></Spinner>
               )}

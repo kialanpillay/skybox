@@ -17,10 +17,38 @@ export default class About extends React.Component {
           </Row>
           <Row className="justify-content-center">
             <Col md={12}>
-              <h5 className="mono">
-                The Eternal Space Race. Compare your country's orbital exploits
-                against the World.
-              </h5>
+              <h4 className="thin">
+                SKYBOX is built for NASA Space Apps 2020 - Orbital Sky Challenge
+              </h4>
+            </Col>
+          </Row>
+          <Row className="justify-content-center">
+            <Col md={12}>
+              <h4 className="thin">Designed and Developed in South Africa</h4>
+            </Col>
+          </Row>
+          <Row className="justify-content-center">
+            <Col md={12}>
+              <h4 className="thin">
+                &copy; Kialan Pillay, Tshiamo Phaahla and Johns Paul
+              </h4>
+            </Col>
+          </Row>
+          <Row className="justify-content-center">
+            <Col md={12}>
+              <h4 className="thin">
+                View the <a
+                  href="https://github.com/kialanpillay/space-apps/"
+                  target="_blank"
+                >
+                  Source Code
+                </a>{" "}
+              </h4>
+            </Col>
+          </Row>
+          <Row className="justify-content-center">
+            <Col md={12}>
+              <img src={"Space_Apps_Logos/PNG/Square White.png"} width={350}/>
             </Col>
           </Row>
         </Container>
