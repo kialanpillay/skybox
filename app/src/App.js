@@ -190,9 +190,15 @@ export default class App extends React.Component {
                   <Col md="auto">
                     {this.state.satellites ? (
                       <h5 className="mono">
-                        NASA SSC tracks {this.state.observatories.length}{" "}
-                        satellites historically or currently orbiting Planet
-                        Earth.
+                        NASA{" "}
+                        <a
+                          href="https://sscweb.gsfc.nasa.gov/about.html"
+                          target="_blank"
+                        >
+                          SSC
+                        </a>{" "}
+                        tracks {this.state.observatories.length} satellites
+                        historically or currently orbiting Planet Earth.
                       </h5>
                     ) : (
                       <Spinner animation="border" role="status"></Spinner>

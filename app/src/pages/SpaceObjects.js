@@ -103,7 +103,7 @@ export default class SpaceObjects extends React.Component {
           <Row className="justify-content-center">
             <Col md={12}>
               <h5 className="mono">
-                The Eternal Space Race. Compare you country's orbital exploits
+                The Eternal Space Race. Compare your country's orbital exploits
                 against the World.
               </h5>
             </Col>
