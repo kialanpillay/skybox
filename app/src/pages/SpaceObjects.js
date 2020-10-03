@@ -73,6 +73,9 @@ export default class SpaceObjects extends React.Component {
       count: obj[item.name.toUpperCase()]
         ? obj[item.name.toUpperCase()][category] / 100
         : 0,
+      text: obj[item.name.toUpperCase()]
+        ? `${item.name} -  ${obj[item.name.toUpperCase()][category]}`
+        : `${item.name} -  0`,
     }));
     const labels = countries.map((item) => ({
       lat: item.latlng[0],
@@ -111,7 +114,8 @@ export default class SpaceObjects extends React.Component {
           <Row className="justify-content-center" style={{ marginTop: "1rem" }}>
             <Col md={3}>
               <h6 className="mono">
-                Category<br />
+                Category
+                <br />
                 {this.state.category}
               </h6>
             </Col>
@@ -138,6 +142,7 @@ export default class SpaceObjects extends React.Component {
                 width={800}
                 height={400}
                 pointsData={this.state.gData}
+                pointLabel="text"
                 pointAltitude="count"
                 labelsData={this.state.gLabels}
               />
