@@ -69,13 +69,6 @@ export default class App extends React.Component {
   };
 
   render() {
-    const layers = [
-      "coordinates",
-      "view-controls",
-      "stars",
-      "atmosphere-day-night",
-    ];
-
     let data = [];
     if (this.state.res) {
       data = this.state.locations.Data[1].map((location, index) => ({
