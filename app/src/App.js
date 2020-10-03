@@ -11,6 +11,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import SpaceObjects from "./pages/SpaceObjects";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -31,8 +32,10 @@ export default class App extends React.Component {
   componentDidMount() {
     this.getObservatories();
     const globe = this.globeEl;
-    globe.current.controls().autoRotate = true;
-    globe.current.controls().autoRotateSpeed = 3;
+    if (globe.current) {
+      globe.current.controls().autoRotate = true;
+      globe.current.controls().autoRotateSpeed = 3;
+    }
   }
 
   processDateTime = (dt) => {
@@ -151,7 +154,6 @@ export default class App extends React.Component {
         (location.RadialLength[1][location.RadialLength[1].length - 1] -
           6378.137) /
         10000,
-      color: "red",
     }));
     const labels = this.state.locations.map((location, index) => ({
       text: satellite.Name,
@@ -186,7 +188,7 @@ export default class App extends React.Component {
                   <Col md="auto">
                     {this.state.satellites ? (
                       <h5 className="mono">
-                        There are {this.state.observatories.length} satellites
+                        NASA SSC tracks {this.state.observatories.length} satellites
                         historically or currently orbiting Planet Earth.
                       </h5>
                     ) : (
@@ -194,7 +196,6 @@ export default class App extends React.Component {
                     )}
                   </Col>
                 </Row>
-
                 <Row
                   className="justify-content-center"
                   style={{ marginTop: "1rem" }}
@@ -241,43 +242,54 @@ export default class App extends React.Component {
                   style={{ marginTop: "1rem" }}
                 >
                   <Col md={2}>
-                    {this.state.gData.length !== 0 ? (
-                      <h6 className="mono">
-                        ID
-                        <br /> {this.state.gLabels[0].id}
-                      </h6>
-                    ) : null}
+                    <h6 className="mono">
+                      ID
+                      <br />{" "}
+                      {this.state.gData.length !== 0
+                        ? this.state.satellites[this.state.satellite].Id
+                        : "-"}
+                    </h6>
                   </Col>
                   <Col md={2}>
-                    {this.state.gData.length !== 0 ? (
-                      <h6 className="mono">
-                        Latitude <br /> {this.state.gData[0].lat}
-                      </h6>
-                    ) : null}
+                    <h6 className="mono">
+                      Latitude
+                      <br />{" "}
+                      {this.state.gData.length !== 0
+                        ? this.state.gData[0].lat
+                        : "-"}
+                    </h6>
                   </Col>
                   <Col md={2}>
-                    {this.state.gData.length !== 0 ? (
-                      <h6 className="mono">
-                        Longitude <br />
-                        {this.state.gData[0].lng}
-                      </h6>
-                    ) : null}
+                    <h6 className="mono">
+                      Longitude
+                      <br />{" "}
+                      {this.state.gData.length !== 0
+                        ? this.state.gLabels[0].lng
+                        : "-"}
+                    </h6>
                   </Col>
                   <Col md={2}>
-                    {this.state.gData.length !== 0 ? (
-                      <h6 className="mono">
-                        Altitude <br />
-                        {Math.round(this.state.gData[0].altitude * 1000, 2)}km
-                      </h6>
-                    ) : null}
+                    <h6 className="mono">
+                      Altitude
+                      <br />{" "}
+                      {this.state.gData.length !== 0
+                        ? `${Math.round(
+                            this.state.gData[0].altitude * 1000,
+                            2
+                          )}km`
+                        : "-"}
+                    </h6>
                   </Col>
                   <Col md={2}>
-                    {this.state.gData.length !== 0 ? (
-                      <h6 className="mono">
-                        Last Update <br />
-                        {new Date(this.state.satellites[this.state.satellite].EndTime).toLocaleDateString()}
-                      </h6>
-                    ) : null}
+                    <h6 className="mono">
+                      Last Update
+                      <br />{" "}
+                      {this.state.gData.length !== 0
+                        ? new Date(
+                            this.state.satellites[this.state.satellite].EndTime
+                          ).toLocaleDateString()
+                        : "-"}
+                    </h6>
                   </Col>
                 </Row>
                 <Row
@@ -292,15 +304,24 @@ export default class App extends React.Component {
                       height={400}
                       pointsData={this.state.gData}
                       pointAltitude="altitude"
-                      pointColor="color"
                       labelsData={this.state.gLabels}
                       labelSize={10}
                     />
                   </Col>
                 </Row>
+                <Row className="justify-content-center">
+                  <Col md="auto">
+                    <p>
+                      &copy; Kialan Pillay, Tshiamo Phaahla and Johns Paul c/o
+                      Team Alpha Q
+                    </p>
+                  </Col>
+                </Row>
               </Container>
             </Route>
-            <Route exact path="/globe"></Route>
+            <Route exact path="/world">
+              <SpaceObjects />
+            </Route>
           </Switch>
         </Router>
       </div>
