@@ -11,6 +11,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import SpaceObjects from "./pages/SpaceObjects";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -31,8 +32,10 @@ export default class App extends React.Component {
   componentDidMount() {
     this.getObservatories();
     const globe = this.globeEl;
-    globe.current.controls().autoRotate = true;
-    globe.current.controls().autoRotateSpeed = 3;
+    if (globe.current) {
+      globe.current.controls().autoRotate = true;
+      globe.current.controls().autoRotateSpeed = 3;
+    }
   }
 
   processDateTime = (dt) => {
@@ -151,7 +154,6 @@ export default class App extends React.Component {
         (location.RadialLength[1][location.RadialLength[1].length - 1] -
           6378.137) /
         10000,
-      color: "red",
     }));
     const labels = this.state.locations.map((location, index) => ({
       text: satellite.Name,
@@ -186,7 +188,7 @@ export default class App extends React.Component {
                   <Col md="auto">
                     {this.state.satellites ? (
                       <h5 className="mono">
-                        There are {this.state.observatories.length} satellites
+                        NASA SSC tracks {this.state.observatories.length} satellites
                         historically or currently orbiting Planet Earth.
                       </h5>
                     ) : (
@@ -194,7 +196,6 @@ export default class App extends React.Component {
                     )}
                   </Col>
                 </Row>
-
                 <Row
                   className="justify-content-center"
                   style={{ marginTop: "1rem" }}
@@ -303,7 +304,6 @@ export default class App extends React.Component {
                       height={400}
                       pointsData={this.state.gData}
                       pointAltitude="altitude"
-                      pointColor="color"
                       labelsData={this.state.gLabels}
                       labelSize={10}
                     />
@@ -319,7 +319,9 @@ export default class App extends React.Component {
                 </Row>
               </Container>
             </Route>
-            <Route exact path="/globe"></Route>
+            <Route exact path="/world">
+              <SpaceObjects />
+            </Route>
           </Switch>
         </Router>
       </div>
