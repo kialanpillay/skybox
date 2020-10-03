@@ -241,43 +241,54 @@ export default class App extends React.Component {
                   style={{ marginTop: "1rem" }}
                 >
                   <Col md={2}>
-                    {this.state.gData.length !== 0 ? (
-                      <h6 className="mono">
-                        ID
-                        <br /> {this.state.gLabels[0].id}
-                      </h6>
-                    ) : null}
+                    <h6 className="mono">
+                      ID
+                      <br />{" "}
+                      {this.state.gData.length !== 0
+                        ? this.state.satellites[this.state.satellite].Id
+                        : "-"}
+                    </h6>
                   </Col>
                   <Col md={2}>
-                    {this.state.gData.length !== 0 ? (
-                      <h6 className="mono">
-                        Latitude <br /> {this.state.gData[0].lat}
-                      </h6>
-                    ) : null}
+                    <h6 className="mono">
+                      Latitude
+                      <br />{" "}
+                      {this.state.gData.length !== 0
+                        ? this.state.gData[0].lat
+                        : "-"}
+                    </h6>
                   </Col>
                   <Col md={2}>
-                    {this.state.gData.length !== 0 ? (
-                      <h6 className="mono">
-                        Longitude <br />
-                        {this.state.gData[0].lng}
-                      </h6>
-                    ) : null}
+                    <h6 className="mono">
+                      Longitude
+                      <br />{" "}
+                      {this.state.gData.length !== 0
+                        ? this.state.gLabels[0].lng
+                        : "-"}
+                    </h6>
                   </Col>
                   <Col md={2}>
-                    {this.state.gData.length !== 0 ? (
-                      <h6 className="mono">
-                        Altitude <br />
-                        {Math.round(this.state.gData[0].altitude * 1000, 2)}km
-                      </h6>
-                    ) : null}
+                    <h6 className="mono">
+                      Altitude
+                      <br />{" "}
+                      {this.state.gData.length !== 0
+                        ? `${Math.round(
+                            this.state.gData[0].altitude * 1000,
+                            2
+                          )}km`
+                        : "-"}
+                    </h6>
                   </Col>
                   <Col md={2}>
-                    {this.state.gData.length !== 0 ? (
-                      <h6 className="mono">
-                        Last Update <br />
-                        {new Date(this.state.satellites[this.state.satellite].EndTime).toLocaleDateString()}
-                      </h6>
-                    ) : null}
+                    <h6 className="mono">
+                      Last Update
+                      <br />{" "}
+                      {this.state.gData.length !== 0
+                        ? new Date(
+                            this.state.satellites[this.state.satellite].EndTime
+                          ).toLocaleDateString()
+                        : "-"}
+                    </h6>
                   </Col>
                 </Row>
                 <Row
@@ -296,6 +307,14 @@ export default class App extends React.Component {
                       labelsData={this.state.gLabels}
                       labelSize={10}
                     />
+                  </Col>
+                </Row>
+                <Row className="justify-content-center">
+                  <Col md="auto">
+                    <p>
+                      &copy; Kialan Pillay, Tshiamo Phaahla and Johns Paul c/o
+                      Team Alpha Q
+                    </p>
                   </Col>
                 </Row>
               </Container>
