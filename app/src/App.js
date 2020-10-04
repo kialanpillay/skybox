@@ -12,6 +12,7 @@ import Library from "./pages/Library";
 import Objects from "./pages/Objects";
 import About from "./pages/About";
 import Report from "./pages/Report";
+import Paths from "./pages/Paths";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -53,9 +54,7 @@ export default class App extends React.Component {
                 </Row>
                 <Row className="justify-content-center">
                   <Col md="auto">
-                    <h3>
-                      Orbital Exploration At Your Fingertips
-                    </h3>
+                    <h3>Orbital Exploration At Your Fingertips</h3>
                   </Col>
                 </Row>
                 <Row
@@ -89,6 +88,9 @@ export default class App extends React.Component {
             </Route>
             <Route exact path="/about">
               <About />
+            </Route>
+            <Route exact path="/paths">
+              <Paths />
             </Route>
           </Switch>
         </Router>
