@@ -38,7 +38,7 @@ export default class About extends React.Component {
             <Col md={12}>
               <h4>
                 View the <a
-                  href="https://github.com/kialanpillay/space-apps/"
+                  href="https://github.com/kialanpillay/skybox-space-apps/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

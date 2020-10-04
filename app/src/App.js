@@ -13,7 +13,6 @@ import Objects from "./pages/Objects";
 import About from "./pages/About";
 import Report from "./pages/Report";
 import Paths from "./pages/Paths";
-import ReactAudioPlayer from "react-audio-player";
 
 export default class App extends React.Component {
   constructor(props) {
