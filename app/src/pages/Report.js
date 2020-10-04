@@ -9,7 +9,7 @@ import _ from "lodash";
 
 export default class Report extends React.Component {
   render() {
-    const obj = _.countBy(report.map((x) => x.LAUNCH_YEAR))
+    const obj = _.countBy(report.map((x) => x.LAUNCH_YEAR));
     const LAUNCH_COUNTS = Object.keys(obj).map((key) => [key, obj[key]]);
     return (
       <div>
@@ -51,7 +51,7 @@ export default class Report extends React.Component {
                     fontWeight: 200,
                     fontSize: "6rem",
                   }}
-                  duration={3000}
+                  duration={6000}
                   stepPrecision={0}
                 />
               </h1>
@@ -71,7 +71,7 @@ export default class Report extends React.Component {
                     fontWeight: 200,
                     fontSize: "6rem",
                   }}
-                  duration={3000}
+                  duration={6000}
                   stepPrecision={0}
                 />
               </h1>
@@ -90,7 +90,7 @@ export default class Report extends React.Component {
                     fontWeight: 200,
                     fontSize: "6rem",
                   }}
-                  duration={3000}
+                  duration={6000}
                   stepPrecision={0}
                 />
               </h1>
@@ -108,7 +108,7 @@ export default class Report extends React.Component {
             </Col>
           </Row>
           <Row className="justify-content-center" style={{ marginTop: "2rem" }}>
-            <Col md='auto'>
+            <Col md="auto">
               <Chart data={LAUNCH_COUNTS} />
             </Col>
           </Row>

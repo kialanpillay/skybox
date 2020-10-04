@@ -96,7 +96,6 @@ export default class Library extends React.Component {
                       overlay={<Tooltip>SSC ID: {satellite.Id}</Tooltip>}
                     >
                       <h3
-                        className="light"
                         key={index}
                         style={{ cursor: "pointer" }}
                       >

@@ -21,7 +21,7 @@ export default class Chart extends React.PureComponent {
           stroke="#ffffaa"
           strokeWidth={1}
           dot={false}
-          animationDuration={3000}
+          animationDuration={6000}
         />
       </LineChart>
     );
