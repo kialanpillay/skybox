@@ -4,8 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import InputGroup from "react-bootstrap/InputGroup";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
+import Form from "react-bootstrap/Form";
 import countries from "../data/countries.json";
 import scores from "../data/scores.json";
 
@@ -31,6 +30,7 @@ export default class Objects extends React.Component {
       gData: [],
       category: "COUNTRY_TOTAL",
     };
+    this.handleChange = this.handleChange.bind(this);
     this.globeEl = React.createRef();
   }
   componentDidMount() {
@@ -87,9 +87,9 @@ export default class Objects extends React.Component {
     this.setState({ gData: data, gLabels: labels });
   };
 
-  handleClick = (category) => {
-    this.setState({ category: category });
-    this.processData(category);
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+    this.processData(event.target.value);
   };
 
   render() {
@@ -112,27 +112,21 @@ export default class Objects extends React.Component {
             </Col>
           </Row>
           <Row className="justify-content-center" style={{ marginTop: "1rem" }}>
-            <Col md='auto'>
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <InputGroup.Text>{this.state.category}</InputGroup.Text>
-                </InputGroup.Prepend>
-                <DropdownButton
-                  as={InputGroup.Append}
-                  variant="secondary"
-                  title="Categories"
+            <Col md="auto">
+              <InputGroup className="mb-3">
+                <Form.Control
+                  as="select"
+                  name="category"
+                  value={this.state.category}
+                  onChange={this.handleChange}
                 >
                   {CATEGORIES.map((category, index) => {
-                    return (
-                      <Dropdown.Item
-                        key={index}
-                        onClick={() => this.handleClick(category)}
-                      >
-                        {category}
-                      </Dropdown.Item>
-                    );
+                    return <option key={index}>{category}</option>;
                   })}
-                </DropdownButton>
+                </Form.Control>
+                <InputGroup.Append>
+                  <InputGroup.Text>Category</InputGroup.Text>
+                </InputGroup.Append>
               </InputGroup>
             </Col>
           </Row>
