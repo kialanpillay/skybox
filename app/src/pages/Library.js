@@ -73,9 +73,9 @@ export default class Library extends React.Component {
           </Row>
           <Row className="justify-content-center">
             <Col md={12}>
-              <h4 className="light">
+              <h3 className="light">
                 Discover the NASA Satellite Situation Center observatories.
-              </h4>
+              </h3>
             </Col>
           </Row>
           {this.state.satellites ? (
@@ -93,7 +93,7 @@ export default class Library extends React.Component {
                     <OverlayTrigger
                       key={index}
                       placement="top"
-                      overlay={<Tooltip>{satellite.Id}</Tooltip>}
+                      overlay={<Tooltip>SSC ID: {satellite.Id}</Tooltip>}
                     >
                       <h3
                         className="light"

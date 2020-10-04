@@ -3,7 +3,6 @@ import Globe from "react-globe.gl";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -23,7 +22,7 @@ const CATEGORIES = [
   "COUNTRY_TOTAL",
 ];
 
-export default class SpaceObjects extends React.Component {
+export default class Objects extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

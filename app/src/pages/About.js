@@ -49,7 +49,7 @@ export default class About extends React.Component {
           </Row>
           <Row className="justify-content-center">
             <Col md={12}>
-              <img src={"Space_Apps_Logos/PNG/Square White.png"} width={350}/>
+              <img src={"Space_Apps_Logos/PNG/Square White.png"} alt={"Space Apps Logo"} width={350}/>
             </Col>
           </Row>
         </Container>
