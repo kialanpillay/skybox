@@ -221,18 +221,18 @@ export default class Paths extends React.Component {
             <Col md={4}>
               <Form.Group controlId="formBasicRange">
                 <Form.Label className="mono">
-                  {this.state.time !== 0
-                    ? `Location at -${this.state.time} min (-${Math.round(
+                  {this.state.time > 0
+                    ? `ISS Location: -${this.state.time} min (-${Math.round(
                         this.state.time / 60,
                         2
                       )} hr)`
-                    : "Current Location"}
+                    : "ISS Location: Current"}
                 </Form.Label>
                 <Form.Control
                   type="range"
                   name="time"
                   value={this.state.time}
-                  min={1}
+                  min={0}
                   max={60 * 24}
                   onChange={this.handleChange}
                   disabled={this.state.gData.length === 0}
