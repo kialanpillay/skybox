@@ -8,7 +8,6 @@ import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 export default class SSC extends React.Component {
   constructor(props) {
@@ -18,7 +17,6 @@ export default class SSC extends React.Component {
       observatories: null,
       satellites: null,
       satellite: "",
-      processed: false,
       gData: [],
       gLabels: [],
     };
@@ -181,11 +179,12 @@ export default class SSC extends React.Component {
           <Row className="justify-content-center">
             <Col md="auto">
               {this.state.satellites ? (
-                <h3 className="thin">
+                <h3>
                   NASA{" "}
                   <a
                     href="https://sscweb.gsfc.nasa.gov/about.html"
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     SSC
                   </a>{" "}

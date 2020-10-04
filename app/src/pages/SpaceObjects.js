@@ -105,22 +105,18 @@ export default class SpaceObjects extends React.Component {
           </Row>
           <Row className="justify-content-center">
             <Col md={12}>
-              <h3 className="thin">
-                The Eternal Space Race. Compare your country's orbital exploits
+              <h3>
+                The eternal Space Race. Compare your country's orbital exploits
                 against the World.
               </h3>
             </Col>
           </Row>
           <Row className="justify-content-center" style={{ marginTop: "1rem" }}>
-            <Col md={3}>
-              <h6 className="mono">
-                Category
-                <br />
-                {this.state.category}
-              </h6>
+            <Col md={4}>
+              <h3 className="mono">{this.state.category}</h3>
             </Col>
-            <Col md={3}>
-              <DropdownButton variant="secondary" title="Space Object Scores">
+            <Col md={4}>
+              <DropdownButton variant="secondary" title="Categories">
                 {CATEGORIES.map((category, index) => {
                   return (
                     <Dropdown.Item

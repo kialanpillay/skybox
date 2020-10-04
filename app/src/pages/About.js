@@ -17,29 +17,30 @@ export default class About extends React.Component {
           </Row>
           <Row className="justify-content-center">
             <Col md={12}>
-              <h4 className="thin">
+              <h4>
                 SKYBOX is built for NASA Space Apps 2020 - Orbital Sky Challenge
               </h4>
             </Col>
           </Row>
           <Row className="justify-content-center">
             <Col md={12}>
-              <h4 className="thin">Designed and Developed in South Africa</h4>
+              <h4>Designed and Developed in South Africa</h4>
             </Col>
           </Row>
           <Row className="justify-content-center">
             <Col md={12}>
-              <h4 className="thin">
+              <h4>
                 &copy; Kialan Pillay, Tshiamo Phaahla and Johns Paul
               </h4>
             </Col>
           </Row>
           <Row className="justify-content-center">
             <Col md={12}>
-              <h4 className="thin">
+              <h4>
                 View the <a
                   href="https://github.com/kialanpillay/space-apps/"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Source Code
                 </a>{" "}
