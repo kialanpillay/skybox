@@ -171,7 +171,9 @@ export default class Paths extends React.Component {
     }));
 
     const labels = this.state.locations.map((location) => ({
-      text: satellite.Name,
+      text: `${satellite.Name}: ${
+        location.Coordinates[1][0].Latitude[1][1440 - time]
+      } ${location.Coordinates[1][0].Longitude[1][1440 - time]}`,
       id: satellite.Id,
       lat: location.Coordinates[1][0].Latitude[1][1440 - time],
       lng: location.Coordinates[1][0].Longitude[1][1440 - time],
@@ -252,7 +254,7 @@ export default class Paths extends React.Component {
               pathPointAlt={0.1}
               pathStroke={2}
               labelsData={this.state.gLabels}
-              labelSize={10}
+              labelSize={8}
             />
           </Row>
         </Container>
