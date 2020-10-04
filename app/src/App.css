@@ -9,7 +9,6 @@ html {
   color: white;
   background-color: #000011;
   min-height: 100vh;
-  font-weight: 300;
 }
 
 .brand {
@@ -21,6 +20,11 @@ html {
     monospace;
 }
 
-.thin {
+h3,
+h4 {
   font-weight: 200;
+}
+
+a {
+  font-weight: 300;
 }

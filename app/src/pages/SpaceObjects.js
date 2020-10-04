@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FormControl from "react-bootstrap/FormControl";
+import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import countries from "../data/countries.json";
@@ -73,6 +74,9 @@ export default class SpaceObjects extends React.Component {
       count: obj[item.name.toUpperCase()]
         ? obj[item.name.toUpperCase()][category] / 100
         : 0,
+      text: obj[item.name.toUpperCase()]
+        ? `${item.name} -  ${obj[item.name.toUpperCase()][category]}`
+        : `${item.name} -  0`,
     }));
     const labels = countries.map((item) => ({
       lat: item.latlng[0],
@@ -102,32 +106,35 @@ export default class SpaceObjects extends React.Component {
           </Row>
           <Row className="justify-content-center">
             <Col md={12}>
-              <h3 className="thin">
-                The Eternal Space Race. Compare your country's orbital exploits
+              <h3>
+                The eternal Space Race. Compare your country's orbital exploits
                 against the World.
               </h3>
             </Col>
           </Row>
           <Row className="justify-content-center" style={{ marginTop: "1rem" }}>
-            <Col md={3}>
-              <h6 className="mono">
-                Category<br />
-                {this.state.category}
-              </h6>
-            </Col>
-            <Col md={3}>
-              <DropdownButton variant="secondary" title="Space Object Scores">
-                {CATEGORIES.map((category, index) => {
-                  return (
-                    <Dropdown.Item
-                      key={index}
-                      onClick={() => this.handleClick(category)}
-                    >
-                      {category}
-                    </Dropdown.Item>
-                  );
-                })}
-              </DropdownButton>
+            <Col md='auto'>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text>{this.state.category}</InputGroup.Text>
+                </InputGroup.Prepend>
+                <DropdownButton
+                  as={InputGroup.Append}
+                  variant="secondary"
+                  title="Categories"
+                >
+                  {CATEGORIES.map((category, index) => {
+                    return (
+                      <Dropdown.Item
+                        key={index}
+                        onClick={() => this.handleClick(category)}
+                      >
+                        {category}
+                      </Dropdown.Item>
+                    );
+                  })}
+                </DropdownButton>
+              </InputGroup>
             </Col>
           </Row>
           <Row className="justify-content-center" style={{ marginTop: "1rem" }}>
@@ -138,6 +145,7 @@ export default class SpaceObjects extends React.Component {
                 width={800}
                 height={400}
                 pointsData={this.state.gData}
+                pointLabel="text"
                 pointAltitude="count"
                 labelsData={this.state.gLabels}
               />

@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Navigation from "./components/Navigation";
 import SatelliteSituationCenter from "./pages/SSC";
+import Library from "./pages/Library";
 import SpaceObjects from "./pages/SpaceObjects";
 import About from "./pages/About";
 
@@ -20,7 +21,7 @@ export default class App extends React.Component {
     const globe = this.globeEl;
     if (globe.current) {
       globe.current.controls().autoRotate = true;
-      globe.current.controls().autoRotateSpeed = 3;
+      globe.current.controls().autoRotateSpeed = 1;
     }
   }
 
@@ -51,7 +52,7 @@ export default class App extends React.Component {
                 </Row>
                 <Row className="justify-content-center">
                   <Col md="auto">
-                    <h3 className="thin">
+                    <h3>
                       Orbital Exploration At Your Fingertips
                     </h3>
                   </Col>
@@ -75,6 +76,9 @@ export default class App extends React.Component {
             </Route>
             <Route exact path="/ssc">
               <SatelliteSituationCenter />
+            </Route>
+            <Route exact path="/library">
+              <Library />
             </Route>
             <Route exact path="/objects">
               <SpaceObjects />
