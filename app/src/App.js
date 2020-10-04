@@ -26,6 +26,12 @@ export default class App extends React.Component {
       globe.current.controls().autoRotate = true;
       globe.current.controls().autoRotateSpeed = 1;
     }
+    let element = document.createElement("a");
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+    document.getElementById("audio").play();
+    console.log(document.getElementById("audio"));
   }
 
   render() {
@@ -73,7 +79,13 @@ export default class App extends React.Component {
                     arcDashAnimateTime={() => Math.random() * 4000 + 500}
                   />
                 </Row>
-                <ReactAudioPlayer src="SKYBOX.mp3" autoPlay={true} controls={false} loop={true}/>
+                <audio
+                  id="audio"
+                  src="SKYBOX.mp3"
+                  autoPlay={false}
+                  controls={false}
+                  loop={true}
+                />
               </Container>
             </Route>
             <Route exact path="/ssc">
