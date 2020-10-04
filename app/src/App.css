@@ -28,3 +28,7 @@ h4 {
 a {
   font-weight: 300;
 }
+
+canvas {
+  outline: none;
+}
