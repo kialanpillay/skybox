@@ -151,7 +151,8 @@ export default class Paths extends React.Component {
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
     const satellite = this.state.satellites["ISS"];
-    if ([event.target.name] === "interval") {
+    console.log([event.target.name]);
+    if ("interval" === event.target.name) {
       this.processLocation(satellite, event.target.value);
     } else {
       const position = this.getPosition(satellite, event.target.value);
@@ -206,7 +207,7 @@ export default class Paths extends React.Component {
                   value={this.state.interval}
                   onChange={this.handleChange}
                 >
-                  {[...Array(22).keys()].map((x, index) => {
+                  {[...Array(23).keys()].map((x, index) => {
                     return <option key={index}>{x + 2}</option>;
                   })}
                 </Form.Control>
