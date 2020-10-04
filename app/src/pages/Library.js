@@ -5,13 +5,16 @@ import Col from "react-bootstrap/Col";
 import Spinner from "react-bootstrap/Spinner";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import SatMap from "../components/SatMap";
 
 export default class Library extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       observatories: null,
+      locations: null,
       satellites: null,
+      location: { lat: 0, lng: 0 },
     };
   }
   componentDidMount() {
@@ -49,15 +52,96 @@ export default class Library extends React.Component {
     }, obj);
   };
 
+  processDateTime = (dt) => {
+    return dt.substring(0, dt.indexOf(".")).replace(/[-:]/g, "");
+  };
+
   processObservatories = () => {
     const observatories = this.state.observatories.map((observatory) => {
-      return observatory.Name;
+      return {
+        Id: observatory.Id,
+        Name: observatory.Name,
+        StartTime: observatory.StartTime[1],
+        EndTime: observatory.EndTime[1],
+      };
     });
-    const data = this.state.observatories;
+    const data = this.convertArrayToObject(this.state.observatories);
     this.setState({
       observatories: observatories,
       satellites: data,
     });
+    this.getLocations();
+  };
+
+  convertArrayToObject = (array) => {
+    const obj = {};
+    return array.reduce((obj, observatory) => {
+      return {
+        ...obj,
+        [observatory.Name]: {
+          Id: observatory.Id,
+          Name: observatory.Name,
+          StartTime: observatory.StartTime[1],
+          EndTime: observatory.EndTime[1],
+        },
+      };
+    }, obj);
+  };
+
+  getLocations = () => {
+    const satellite = this.state.satellites["ACE"];
+    const url = "https://sscweb.gsfc.nasa.gov/WS/sscr/2";
+    const endDate = new Date(satellite.EndTime);
+    const currentDate = new Date();
+
+    const end =
+      currentDate < endDate
+        ? this.processDateTime(currentDate.toISOString()).slice(0, -2) + "00Z"
+        : this.processDateTime(satellite.EndTime) + "Z";
+
+    let prevDate;
+    if (currentDate < endDate) {
+      prevDate = currentDate;
+    } else {
+      prevDate = endDate;
+    }
+    prevDate.setDate(prevDate.getDate() - 1);
+    const start =
+      this.processDateTime(prevDate.toISOString()).slice(0, -2) + "00Z";
+
+    const endpoint = `${url}/locations/${satellite.Id}/${start},${end}/`;
+    fetch(endpoint, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        this.setState({
+          locations: response.Result.Data[1],
+        });
+      })
+      .then(() => this.processLocation())
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  processLocation = () => {
+    console.log(this.state.locations);
+    const data = this.state.locations.map((location, index) => ({
+      lat:
+        location.Coordinates[1][0].Latitude[1][
+          location.Coordinates[1][0].Latitude[1].length - 1
+        ],
+      lng:
+        location.Coordinates[1][0].Longitude[1][
+          location.Coordinates[1][0].Longitude[1].length - 1
+        ],
+    }));
+    this.setState({ location: data[0] });
   };
 
   render() {
@@ -78,7 +162,7 @@ export default class Library extends React.Component {
               </h3>
             </Col>
           </Row>
-          {this.state.satellites ? (
+          {this.state.satellites && this.state.location ? (
             <Row
               className="justify-content-center"
               style={{
@@ -87,18 +171,27 @@ export default class Library extends React.Component {
                 overflowY: "scroll",
               }}
             >
-              {this.state.satellites.map((satellite, index) => {
+              {this.state.observatories.map((satellite, index) => {
                 return (
                   <Col md={3} key={index}>
                     <OverlayTrigger
                       key={index}
                       placement="top"
-                      overlay={<Tooltip>SSC ID: {satellite.Id}</Tooltip>}
+                      overlay={
+                        satellite.Id === "ace" ? (
+                          <Tooltip>
+                            SSC ID: {satellite.Id}
+                            <SatMap
+                              name={satellite.Name}
+                              location={this.state.location}
+                            />
+                          </Tooltip>
+                        ) : (
+                          <Tooltip>SSC ID: {satellite.Id}</Tooltip>
+                        )
+                      }
                     >
-                      <h3
-                        key={index}
-                        style={{ cursor: "pointer" }}
-                      >
+                      <h3 key={index} style={{ cursor: "pointer" }}>
                         {satellite.Name}
                       </h3>
                     </OverlayTrigger>
