@@ -12,7 +12,6 @@ export default class Library extends React.Component {
     this.state = {
       observatories: null,
       satellites: null,
-      wiki: {},
     };
   }
   componentDidMount() {
@@ -59,7 +58,6 @@ export default class Library extends React.Component {
       observatories: observatories,
       satellites: data,
     });
-    this.getWikipediaData();
   };
 
   render() {
