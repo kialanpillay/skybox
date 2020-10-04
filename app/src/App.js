@@ -9,8 +9,9 @@ import "./App.css";
 import Navigation from "./components/Navigation";
 import SatelliteSituationCenter from "./pages/SSC";
 import Library from "./pages/Library";
-import SpaceObjects from "./pages/SpaceObjects";
+import Objects from "./pages/Objects";
 import About from "./pages/About";
+import Report from "./pages/Report";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -81,7 +82,10 @@ export default class App extends React.Component {
               <Library />
             </Route>
             <Route exact path="/objects">
-              <SpaceObjects />
+              <Objects />
+            </Route>
+            <Route exact path="/report">
+              <Report />
             </Route>
             <Route exact path="/about">
               <About />
