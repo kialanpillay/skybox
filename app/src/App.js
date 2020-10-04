@@ -30,8 +30,19 @@ export default class App extends React.Component {
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
-    document.getElementById("audio").play();
-    console.log(document.getElementById("audio"));
+    const audio = document.getElementById("audio");
+    if (audio) {
+      let promise = audio.play();
+      if (promise !== undefined) {
+        promise
+          .then((_) => {
+            // Autoplay started!
+          })
+          .catch((e) => {
+            audio.setAttribute("controls", "true");
+          });
+      }
+    }
   }
 
   render() {
@@ -72,7 +83,7 @@ export default class App extends React.Component {
                     ref={this.globeEl}
                     globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
                     width={800}
-                    height={350}
+                    height={320}
                     arcsData={data}
                     arcColor="color"
                     arcDashGap={() => Math.random()}
