@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FormControl from "react-bootstrap/FormControl";
+import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import countries from "../data/countries.json";
@@ -112,22 +113,28 @@ export default class SpaceObjects extends React.Component {
             </Col>
           </Row>
           <Row className="justify-content-center" style={{ marginTop: "1rem" }}>
-            <Col md={4}>
-              <h3 className="mono">{this.state.category}</h3>
-            </Col>
-            <Col md={4}>
-              <DropdownButton variant="secondary" title="Categories">
-                {CATEGORIES.map((category, index) => {
-                  return (
-                    <Dropdown.Item
-                      key={index}
-                      onClick={() => this.handleClick(category)}
-                    >
-                      {category}
-                    </Dropdown.Item>
-                  );
-                })}
-              </DropdownButton>
+            <Col md='auto'>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text>{this.state.category}</InputGroup.Text>
+                </InputGroup.Prepend>
+                <DropdownButton
+                  as={InputGroup.Append}
+                  variant="secondary"
+                  title="Categories"
+                >
+                  {CATEGORIES.map((category, index) => {
+                    return (
+                      <Dropdown.Item
+                        key={index}
+                        onClick={() => this.handleClick(category)}
+                      >
+                        {category}
+                      </Dropdown.Item>
+                    );
+                  })}
+                </DropdownButton>
+              </InputGroup>
             </Col>
           </Row>
           <Row className="justify-content-center" style={{ marginTop: "1rem" }}>
