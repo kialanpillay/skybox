@@ -32,3 +32,8 @@ a {
 canvas {
   outline: none;
 }
+
+.leaflet-container {
+  width: 200px; 
+  height: 200px;
+}
